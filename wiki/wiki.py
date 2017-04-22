@@ -7,11 +7,8 @@ class wiki:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(pass_context=True, name='wiki', aliases=['w', 'bpwiki'])
+    @commands.command(pass_context=True, name='wiki', aliases=['w', 'bpwiki', 'bp'])
     async def _wiki(self, context, *, query: str):
-        """
-        Get information from wiki
-        """
         try:
             url = 'https://wiki.battleplugins.org/api.php?'
             payload = {}
