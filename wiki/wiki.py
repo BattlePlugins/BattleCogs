@@ -16,7 +16,7 @@ class Wikipedia:
         Get information from Wikipedia
         """
         try:
-            url = 'https://en.wikipedia.org/w/api.php?'
+            url = 'https://wiki.battleplugins.org/api.php?'
             payload = {}
             payload['action'] = 'query'
             payload['format'] = 'json'
