@@ -3,18 +3,12 @@ import discord
 from discord.ext import commands
 
 
-class Wikipedia:
-    """
-    Le Wikipedia Cog
-    """
+class wiki:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(pass_context=True, name='wikipedia', aliases=['wiki', 'w'])
-    async def _wikipedia(self, context, *, query: str):
-        """
-        Get information from Wikipedia
-        """
+    @commands.command(pass_context=True, name='wiki', aliases=['bpwiki', 'bp'])
+    async def _wiki(self, context, *, query: str):
         try:
             url = 'https://wiki.battleplugins.org/api.php?'
             payload = {}
@@ -35,8 +29,8 @@ class Wikipedia:
                 for page in result['query']['pages']:
                     title = result['query']['pages'][page]['title']
                     description = result['query']['pages'][page]['extract'].replace('\n', '\n\n')
-                em = discord.Embed(title='Wikipedia: {}'.format(title), description='\a\n{}...\n\a'.format(description[:-3]), color=discord.Color.blue(), url='https://en.wikipedia.org/wiki/{}'.format(title.replace(' ', '_')))
-                em.set_footer(text='Information provided by Wikimedia', icon_url='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wikimedia-logo.png/600px-Wikimedia-logo.png')
+                em = discord.Embed(title='wiki: {}'.format(title), description='\a\n{}...\n\a'.format(description[:-3]), color=discord.Color.yellow(), url='https://wiki.battleplugins.org/{}'.format(title.replace(' ', '_')))
+                em.set_footer(text='Information from BattlePlugins Wiki', icon_url='https://wiki.battleplugins.org/templogo.png')
                 await self.bot.say(embed=em)
             else:
                 message = 'I\'m sorry, I can\'t find {}'.format(''.join(query))
@@ -47,5 +41,5 @@ class Wikipedia:
 
 
 def setup(bot):
-    n = Wikipedia(bot)
+    n = wiki(bot)
     bot.add_cog(n)
